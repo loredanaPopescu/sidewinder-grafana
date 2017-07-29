@@ -3,7 +3,7 @@
 System.register(['./datasource', './query_ctrl'], function (_export, _context) {
   "use strict";
 
-  var GenericDatasource, GenericDatasourceQueryCtrl, GenericConfigCtrl, GenericQueryOptionsCtrl;
+  var SidewinderDatasource, SidewinderDatasourceQueryCtrl, SidewinderConfigCtrl, SidewinderQueryOptionsCtrl;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -13,30 +13,30 @@ System.register(['./datasource', './query_ctrl'], function (_export, _context) {
 
   return {
     setters: [function (_datasource) {
-      GenericDatasource = _datasource.GenericDatasource;
+      SidewinderDatasource = _datasource.SidewinderDatasource;
     }, function (_query_ctrl) {
-      GenericDatasourceQueryCtrl = _query_ctrl.GenericDatasourceQueryCtrl;
+      SidewinderDatasourceQueryCtrl = _query_ctrl.SidewinderDatasourceQueryCtrl;
     }],
     execute: function () {
-      _export('ConfigCtrl', GenericConfigCtrl = function GenericConfigCtrl() {
-        _classCallCheck(this, GenericConfigCtrl);
+      _export('ConfigCtrl', SidewinderConfigCtrl = function SidewinderConfigCtrl() {
+        _classCallCheck(this, SidewinderConfigCtrl);
       });
 
-      GenericConfigCtrl.templateUrl = 'partials/config.html';
+      SidewinderConfigCtrl.templateUrl = 'partials/config.html';
 
-      _export('QueryOptionsCtrl', GenericQueryOptionsCtrl = function GenericQueryOptionsCtrl() {
-        _classCallCheck(this, GenericQueryOptionsCtrl);
+      _export('QueryOptionsCtrl', SidewinderQueryOptionsCtrl = function SidewinderQueryOptionsCtrl() {
+        _classCallCheck(this, SidewinderQueryOptionsCtrl);
       });
 
-      GenericQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
+      SidewinderQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
 
-      _export('Datasource', GenericDatasource);
+      _export('Datasource', SidewinderDatasource);
 
-      _export('QueryCtrl', GenericDatasourceQueryCtrl);
+      _export('QueryCtrl', SidewinderDatasourceQueryCtrl);
 
-      _export('ConfigCtrl', GenericConfigCtrl);
+      _export('ConfigCtrl', SidewinderConfigCtrl);
 
-      _export('QueryOptionsCtrl', GenericQueryOptionsCtrl);
+      _export('QueryOptionsCtrl', SidewinderQueryOptionsCtrl);
     }
   };
 });

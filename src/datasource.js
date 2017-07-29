@@ -1,6 +1,21 @@
+/**
+ * Copyright 2017 Ambud Sharma
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 		http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import _ from "lodash";
 
-export class GenericDatasource {
+export class SidewinderDatasource {
 
   constructor(instanceSettings, $q, backendSrv, templateSrv) {
     this.type = instanceSettings.type;
@@ -32,7 +47,7 @@ export class GenericDatasource {
        method: 'POST',
        headers: { 'Content-Type': 'application/json' }
     });
-    
+
   }
 
   testDatasource() {
@@ -82,7 +97,7 @@ export class GenericDatasource {
       }).then(this.mapToTextValue);
   }
 
-  metricFindQuery(query) {
+  metricFindQuery(options) {
     var target = typeof options === "string" ? options : options.target;
     var interpolated = {
       target: this.templateSrv.replace(target, null, 'regex')
@@ -96,7 +111,7 @@ export class GenericDatasource {
       }).then(this.mapToTextValue);
   }
 
-  metricFindQuery(options) {
+  tagFindQuery(options) {
     var target = typeof options === "string" ? options : options.target;
     var interpolated = {
       target: this.templateSrv.replace(target, null, 'regex')

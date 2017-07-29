@@ -3,7 +3,7 @@
 System.register(['lodash'], function (_export, _context) {
   "use strict";
 
-  var _, _createClass, GenericDatasource;
+  var _, _createClass, SidewinderDatasource;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -34,9 +34,9 @@ System.register(['lodash'], function (_export, _context) {
         };
       }();
 
-      _export('GenericDatasource', GenericDatasource = function () {
-        function GenericDatasource(instanceSettings, $q, backendSrv, templateSrv) {
-          _classCallCheck(this, GenericDatasource);
+      _export('SidewinderDatasource', SidewinderDatasource = function () {
+        function SidewinderDatasource(instanceSettings, $q, backendSrv, templateSrv) {
+          _classCallCheck(this, SidewinderDatasource);
 
           this.type = instanceSettings.type;
           this.url = instanceSettings.url;
@@ -51,7 +51,7 @@ System.register(['lodash'], function (_export, _context) {
           }
         }
 
-        _createClass(GenericDatasource, [{
+        _createClass(SidewinderDatasource, [{
           key: 'query',
           value: function query(options) {
             var query = this.buildQueryParameters(options);
@@ -123,7 +123,7 @@ System.register(['lodash'], function (_export, _context) {
           }
         }, {
           key: 'metricFindQuery',
-          value: function metricFindQuery(query) {
+          value: function metricFindQuery(options) {
             var target = typeof options === "string" ? options : options.target;
             var interpolated = {
               target: this.templateSrv.replace(target, null, 'regex')
@@ -137,8 +137,8 @@ System.register(['lodash'], function (_export, _context) {
             }).then(this.mapToTextValue);
           }
         }, {
-          key: 'metricFindQuery',
-          value: function metricFindQuery(options) {
+          key: 'tagFindQuery',
+          value: function tagFindQuery(options) {
             var target = typeof options === "string" ? options : options.target;
             var interpolated = {
               target: this.templateSrv.replace(target, null, 'regex')
@@ -241,10 +241,10 @@ System.register(['lodash'], function (_export, _context) {
           }
         }]);
 
-        return GenericDatasource;
+        return SidewinderDatasource;
       }());
 
-      _export('GenericDatasource', GenericDatasource);
+      _export('SidewinderDatasource', SidewinderDatasource);
     }
   };
 });

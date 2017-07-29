@@ -1,6 +1,6 @@
 {
   "name": "Sidewinder",
-  "id": "sidewinder",
+  "id": "sidewinder-datasource",
   "type": "datasource",
 
   "partials": {

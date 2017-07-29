@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GenericDatasourceQueryCtrl = undefined;
+exports.SidewinderDatasourceQueryCtrl = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -15,15 +15,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2017 Ambud Sharma
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 		http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-var GenericDatasourceQueryCtrl = exports.GenericDatasourceQueryCtrl = function (_QueryCtrl) {
-  _inherits(GenericDatasourceQueryCtrl, _QueryCtrl);
 
-  function GenericDatasourceQueryCtrl($scope, $injector) {
-    _classCallCheck(this, GenericDatasourceQueryCtrl);
+var SidewinderDatasourceQueryCtrl = exports.SidewinderDatasourceQueryCtrl = function (_QueryCtrl) {
+  _inherits(SidewinderDatasourceQueryCtrl, _QueryCtrl);
 
-    var _this = _possibleConstructorReturn(this, (GenericDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(GenericDatasourceQueryCtrl)).call(this, $scope, $injector));
+  function SidewinderDatasourceQueryCtrl($scope, $injector) {
+    _classCallCheck(this, SidewinderDatasourceQueryCtrl);
+
+    var _this = _possibleConstructorReturn(this, (SidewinderDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(SidewinderDatasourceQueryCtrl)).call(this, $scope, $injector));
 
     _this.scope = $scope;
     _this.target.target = _this.target.target;
@@ -37,11 +52,10 @@ var GenericDatasourceQueryCtrl = exports.GenericDatasourceQueryCtrl = function (
     if (!_this.target.aggregator) {
       _this.target.aggregator = { name: "none", args: [{ index: 0, type: "int", value: 1000 }], unit: "secs" };
     }
-    console.log(_this.target);
     return _this;
   }
 
-  _createClass(GenericDatasourceQueryCtrl, [{
+  _createClass(SidewinderDatasourceQueryCtrl, [{
     key: 'toggleEditorMode',
     value: function toggleEditorMode() {
       this.target.rawQuery = !this.target.rawQuery;
@@ -52,39 +66,39 @@ var GenericDatasourceQueryCtrl = exports.GenericDatasourceQueryCtrl = function (
       this.panelCtrl.refresh(); // Asks the panel to refresh data.
     }
   }, {
-    key: 'getOptions',
-    value: function getOptions() {
-      return this.datasource.metricFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+    key: 'getMeasurementOptions',
+    value: function getMeasurementOptions() {
+      return this.datasource.metricFindQuery(this.target);
     }
   }, {
     key: 'getTagOptions',
     value: function getTagOptions() {
-      var res = this.datasource.tagFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+      var res = this.datasource.tagFindQuery(this.target);
       return res;
     }
   }, {
     key: 'getConditionOptions',
     value: function getConditionOptions() {
-      return this.datasource.conditionTypes(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+      return this.datasource.conditionTypes(this.target);
     }
   }, {
     key: 'getFieldOptions',
     value: function getFieldOptions() {
-      return this.datasource.fieldOptionsQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+      return this.datasource.fieldOptionsQuery(this.target);
     }
   }, {
     key: 'getAggregators',
     value: function getAggregators() {
-      return this.datasource.getAggregators(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+      return this.datasource.getAggregators(this.target);
     }
   }, {
     key: 'getUnits',
     value: function getUnits() {
-      return this.datasource.getUnits(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+      return this.datasource.getUnits(this.target);
     }
   }, {
-    key: 'getAggregators',
-    value: function getAggregators() {
+    key: 'removeAggregator',
+    value: function removeAggregator() {
       this.target.aggregator = {};
     }
   }, {
@@ -99,10 +113,9 @@ var GenericDatasourceQueryCtrl = exports.GenericDatasourceQueryCtrl = function (
   }, {
     key: 'addArgs',
     value: function addArgs() {
-      if (this.target.aggregators.name && !this.target.aggregators.args) {
-        this.target.aggregators.args = [];
+      if (this.target.aggregator.name && !this.target.aggregator.args) {
+        this.target.aggregator.args = [];
       }
-      this.target.aggregators.args.push({});
       this.panelCtrl.refresh();
     }
   }, {
@@ -125,8 +138,8 @@ var GenericDatasourceQueryCtrl = exports.GenericDatasourceQueryCtrl = function (
     }
   }]);
 
-  return GenericDatasourceQueryCtrl;
+  return SidewinderDatasourceQueryCtrl;
 }(_sdk.QueryCtrl);
 
-GenericDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
+SidewinderDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
 //# sourceMappingURL=query_ctrl.js.map

@@ -3,7 +3,7 @@
 System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_export, _context) {
   "use strict";
 
-  var QueryCtrl, _createClass, GenericDatasourceQueryCtrl;
+  var QueryCtrl, _createClass, SidewinderDatasourceQueryCtrl;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -58,13 +58,13 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         };
       }();
 
-      _export('GenericDatasourceQueryCtrl', GenericDatasourceQueryCtrl = function (_QueryCtrl) {
-        _inherits(GenericDatasourceQueryCtrl, _QueryCtrl);
+      _export('SidewinderDatasourceQueryCtrl', SidewinderDatasourceQueryCtrl = function (_QueryCtrl) {
+        _inherits(SidewinderDatasourceQueryCtrl, _QueryCtrl);
 
-        function GenericDatasourceQueryCtrl($scope, $injector) {
-          _classCallCheck(this, GenericDatasourceQueryCtrl);
+        function SidewinderDatasourceQueryCtrl($scope, $injector) {
+          _classCallCheck(this, SidewinderDatasourceQueryCtrl);
 
-          var _this = _possibleConstructorReturn(this, (GenericDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(GenericDatasourceQueryCtrl)).call(this, $scope, $injector));
+          var _this = _possibleConstructorReturn(this, (SidewinderDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(SidewinderDatasourceQueryCtrl)).call(this, $scope, $injector));
 
           _this.scope = $scope;
           _this.target.target = _this.target.target;
@@ -78,11 +78,10 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
           if (!_this.target.aggregator) {
             _this.target.aggregator = { name: "none", args: [{ index: 0, type: "int", value: 1000 }], unit: "secs" };
           }
-          console.log(_this.target);
           return _this;
         }
 
-        _createClass(GenericDatasourceQueryCtrl, [{
+        _createClass(SidewinderDatasourceQueryCtrl, [{
           key: 'toggleEditorMode',
           value: function toggleEditorMode() {
             this.target.rawQuery = !this.target.rawQuery;
@@ -93,39 +92,39 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {
-          key: 'getOptions',
-          value: function getOptions() {
-            return this.datasource.metricFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+          key: 'getMeasurementOptions',
+          value: function getMeasurementOptions() {
+            return this.datasource.metricFindQuery(this.target);
           }
         }, {
           key: 'getTagOptions',
           value: function getTagOptions() {
-            var res = this.datasource.tagFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+            var res = this.datasource.tagFindQuery(this.target);
             return res;
           }
         }, {
           key: 'getConditionOptions',
           value: function getConditionOptions() {
-            return this.datasource.conditionTypes(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+            return this.datasource.conditionTypes(this.target);
           }
         }, {
           key: 'getFieldOptions',
           value: function getFieldOptions() {
-            return this.datasource.fieldOptionsQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+            return this.datasource.fieldOptionsQuery(this.target);
           }
         }, {
           key: 'getAggregators',
           value: function getAggregators() {
-            return this.datasource.getAggregators(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+            return this.datasource.getAggregators(this.target);
           }
         }, {
           key: 'getUnits',
           value: function getUnits() {
-            return this.datasource.getUnits(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+            return this.datasource.getUnits(this.target);
           }
         }, {
-          key: 'getAggregators',
-          value: function getAggregators() {
+          key: 'removeAggregator',
+          value: function removeAggregator() {
             this.target.aggregator = {};
           }
         }, {
@@ -140,10 +139,9 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }, {
           key: 'addArgs',
           value: function addArgs() {
-            if (this.target.aggregators.name && !this.target.aggregators.args) {
-              this.target.aggregators.args = [];
+            if (this.target.aggregator.name && !this.target.aggregator.args) {
+              this.target.aggregator.args = [];
             }
-            this.target.aggregators.args.push({});
             this.panelCtrl.refresh();
           }
         }, {
@@ -166,12 +164,12 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
           }
         }]);
 
-        return GenericDatasourceQueryCtrl;
+        return SidewinderDatasourceQueryCtrl;
       }(QueryCtrl));
 
-      _export('GenericDatasourceQueryCtrl', GenericDatasourceQueryCtrl);
+      _export('SidewinderDatasourceQueryCtrl', SidewinderDatasourceQueryCtrl);
 
-      GenericDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
+      SidewinderDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
     }
   };
 });

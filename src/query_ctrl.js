@@ -1,11 +1,25 @@
+/**
+ * Copyright 2017 Ambud Sharma
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 		http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import {QueryCtrl} from 'app/plugins/sdk';
 import './css/query-editor.css!'
 
-export class GenericDatasourceQueryCtrl extends QueryCtrl {
+export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
 
   constructor($scope, $injector)  {
     super($scope, $injector);
-
     this.scope = $scope;
     this.target.target = this.target.target;
     this.target.type = 'timeserie';
@@ -18,7 +32,6 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     if(!this.target.aggregator) {
       this.target.aggregator = { name:"none", args:[{ index:0, type: "int", value: 1000 }], unit: "secs" };
     }
-    console.log(this.target);
   }
 
   toggleEditorMode() {
@@ -29,32 +42,32 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
-  getOptions() {
-    return this.datasource.metricFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+  getMeasurementOptions() {
+    return this.datasource.metricFindQuery(this.target);
   }
 
   getTagOptions() {
-   var res = this.datasource.tagFindQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
-   return res;
+    var res = this.datasource.tagFindQuery(this.target);
+    return res;
   }
 
   getConditionOptions() {
-    return this.datasource.conditionTypes(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+    return this.datasource.conditionTypes(this.target);
   }
 
   getFieldOptions() {
-   return this.datasource.fieldOptionsQuery(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+   return this.datasource.fieldOptionsQuery(this.target);
   }
 
   getAggregators() {
-    return this.datasource.getAggregators(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+    return this.datasource.getAggregators(this.target);
   }
 
   getUnits() {
-    return this.datasource.getUnits(this.target).then(this.uiSegmentSrv.transformToSegments(false));
+    return this.datasource.getUnits(this.target);
   }
 
-  getAggregators() {
+  removeAggregator() {
     this.target.aggregator = {};
   }
 
@@ -67,10 +80,9 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   }
 
   addArgs() {
-    if(this.target.aggregators.name && !this.target.aggregators.args) {
-      this.target.aggregators.args = [];
+    if(this.target.aggregator.name && !this.target.aggregator.args) {
+      this.target.aggregator.args = [];
     }
-    this.target.aggregators.args.push({});
     this.panelCtrl.refresh();
   }
 
@@ -87,8 +99,8 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
 
   onChangeFilter(index, segment) {
     this.target.filters[index] = segment;
-      this.panelCtrl.refresh(); // Asks the panel to refresh data.
+    this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 }
 
-GenericDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
+SidewinderDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';

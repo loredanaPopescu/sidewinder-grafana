@@ -1,15 +1,15 @@
-import {GenericDatasource} from './datasource';
-import {GenericDatasourceQueryCtrl} from './query_ctrl';
+import {SidewinderDatasource} from './datasource';
+import {SidewinderDatasourceQueryCtrl} from './query_ctrl';
 
-class GenericConfigCtrl {}
-GenericConfigCtrl.templateUrl = 'partials/config.html';
+class SidewinderConfigCtrl {}
+SidewinderConfigCtrl.templateUrl = 'partials/config.html';
 
-class GenericQueryOptionsCtrl {}
-GenericQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
+class SidewinderQueryOptionsCtrl {}
+SidewinderQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
 
 export {
-  GenericDatasource as Datasource,
-  GenericDatasourceQueryCtrl as QueryCtrl,
-  GenericConfigCtrl as ConfigCtrl,
-  GenericQueryOptionsCtrl as QueryOptionsCtrl,
+  SidewinderDatasource as Datasource,
+  SidewinderDatasourceQueryCtrl as QueryCtrl,
+  SidewinderConfigCtrl as ConfigCtrl,
+  SidewinderQueryOptionsCtrl as QueryOptionsCtrl,
 };
