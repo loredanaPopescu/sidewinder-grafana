@@ -36,19 +36,19 @@ Note: If you don't have a database created, you can use the _internal database u
 ```
 
 Here's how an example data source should look like:
-<img src="https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-create.png" height="600" />
+![Data Source Create](https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-create.png)
 
 #### Create a Query Visually
 Sidewinder support visual query building using an editor. There is support for auto-complete for all non-numeric fields (Measurement, Value Field, Tags). Please refer to [Sidewinder data model](http://sidewinder.srotya.com/docs/#/designs/?id=storage-engines) to understand the significance of different concepts.
 
 Here's how an example Visual Query should look like:
-<img src="https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit.png" height="400" />
+![Data Source Edit](https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit.png)
 
 #### Create a Query using TSQL
 You can also use the Time Series Query Language to create panels. Please note that because Grafana provides the time ranges, you can't provide start and end time in the TSQL string. Please refer to the [docs](http://sidewinder.srotya.com/docs/#/integrations/queries) for more details on TSQL.
 
 Here's how an example TSQL Query should look like:
-<img src="https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit-raw.png" height="400" />
+![Data Source Edit Raw](https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit-raw.png)
 
 #### Create Templates
 Because Sidewinder supports TSQL, [grafana templated dashboards](http://docs.grafana.org/reference/templating/) can be created. You can create auto-complete suggestions for variables:
@@ -56,4 +56,4 @@ Because Sidewinder supports TSQL, [grafana templated dashboards](http://docs.gra
 2. For TAG suggestion simply type ```measurementname.*``` in the "metric name or tag query field"
 
 Here's how an example Templated Dashboard should look like:
-<img src="https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit-raw.png" height="400" />
+![Data Source Template Edit](https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit-template.png)
