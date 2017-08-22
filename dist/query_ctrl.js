@@ -76,7 +76,7 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             _this.target.filters = [];
           }
           if (!_this.target.aggregator) {
-            _this.target.aggregator = { name: "none", args: [{ index: 0, type: "int", value: 1000 }], unit: "secs" };
+            _this.target.aggregator = { name: "none", args: [{ index: 0, type: "int", value: 10 }], unit: "secs" };
           }
           return _this;
         }

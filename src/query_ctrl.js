@@ -30,7 +30,7 @@ export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
       this.target.filters = [];
     }
     if(!this.target.aggregator) {
-      this.target.aggregator = { name:"none", args:[{ index:0, type: "int", value: 1000 }], unit: "secs" };
+      this.target.aggregator = { name:"none", args:[{ index:0, type: "int", value: 10 }], unit: "secs" };
     }
   }
 
