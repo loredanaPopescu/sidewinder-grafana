@@ -68,6 +68,9 @@ var SidewinderDatasourceQueryCtrl = exports.SidewinderDatasourceQueryCtrl = func
   }, {
     key: 'getMeasurementOptions',
     value: function getMeasurementOptions() {
+      if (!this.target.target) {
+        this.target.target = '';
+      }
       return this.datasource.metricFindQuery(this.target);
     }
   }, {
@@ -84,6 +87,10 @@ var SidewinderDatasourceQueryCtrl = exports.SidewinderDatasourceQueryCtrl = func
   }, {
     key: 'getFieldOptions',
     value: function getFieldOptions() {
+      if (!this.target.field) {
+        this.target.field = '';
+      }
+
       return this.datasource.fieldOptionsQuery(this.target);
     }
   }, {

@@ -43,6 +43,9 @@ export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
   }
 
   getMeasurementOptions() {
+    if (!this.target.target) {
+      this.target.target = '';
+    }
     return this.datasource.metricFindQuery(this.target);
   }
 
@@ -56,6 +59,10 @@ export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
   }
 
   getFieldOptions() {
+  if (!this.target.field) {
+    this.target.field = '';
+  }
+
    return this.datasource.fieldOptionsQuery(this.target);
   }
 

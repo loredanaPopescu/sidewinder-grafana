@@ -94,6 +94,9 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }, {
           key: 'getMeasurementOptions',
           value: function getMeasurementOptions() {
+            if (!this.target.target) {
+              this.target.target = '';
+            }
             return this.datasource.metricFindQuery(this.target);
           }
         }, {
@@ -110,6 +113,10 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }, {
           key: 'getFieldOptions',
           value: function getFieldOptions() {
+            if (!this.target.field) {
+              this.target.field = '';
+            }
+
             return this.datasource.fieldOptionsQuery(this.target);
           }
         }, {
