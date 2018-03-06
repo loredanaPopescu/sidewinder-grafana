@@ -53,9 +53,18 @@ export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
     var res = this.datasource.tagFindQuery(this.target);
     return res;
   }
+  
+  getTagValueOptions(tagKey) {
+    var res = this.datasource.tagValueFindQuery(this.target, tagKey);
+    return res;
+  }
 
   getConditionOptions() {
     return this.datasource.conditionTypes(this.target);
+  }
+  
+  getOperatorOptions() {
+	return this.datasource.operatorTypes(this.target);
   }
 
   getFieldOptions() {

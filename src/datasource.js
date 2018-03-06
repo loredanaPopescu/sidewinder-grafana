@@ -96,6 +96,14 @@ export class SidewinderDatasource {
         headers: { 'Content-Type': 'application/json' }
       }).then(this.mapToTextValue);
   }
+  
+  operatorTypes(options) {
+    return this.backendSrv.datasourceRequest({
+        url: this.url + '/query/otypes',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(this.mapToTextValue);
+  }
 
   metricFindQuery(options) {
     var target = typeof options === "string" ? options : options.target;
@@ -119,6 +127,22 @@ export class SidewinderDatasource {
 
     return this.backendSrv.datasourceRequest({
       url: this.url + '/query/tags',
+      data: interpolated,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(this.mapToTextValue);
+  }
+  
+  tagValueFindQuery(options, tag) {
+    var target = typeof options === "string" ? options : options.target;
+    var tag = typeof tag === "string" ? tag : options.tag;
+    var interpolated = {
+      target: this.templateSrv.replace(target, null, 'regex'),
+      tag: this.templateSrv.replace(tag, null, 'regex')
+    };
+
+    return this.backendSrv.datasourceRequest({
+      url: this.url + '/query/tagvs',
       data: interpolated,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
