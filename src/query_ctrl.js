@@ -64,15 +64,16 @@ export class SidewinderDatasourceQueryCtrl extends QueryCtrl {
   }
   
   getOperatorOptions() {
+	  console.log("ctrl operator options")
+	  
 	return this.datasource.operatorTypes(this.target);
   }
 
   getFieldOptions() {
-  if (!this.target.field) {
-    this.target.field = '';
-  }
-
-   return this.datasource.fieldOptionsQuery(this.target);
+    if (!this.target.field) {
+    		this.target.field = '';
+    }
+    return this.datasource.fieldOptionsQuery(this.target);
   }
 
   getAggregators() {

@@ -122,6 +122,15 @@ System.register(['lodash'], function (_export, _context) {
             }).then(this.mapToTextValue);
           }
         }, {
+          key: 'operatorTypes',
+          value: function operatorTypes(options) {
+            return this.backendSrv.datasourceRequest({
+              url: this.url + '/query/otypes',
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' }
+            }).then(this.mapToTextValue);
+          }
+        }, {
           key: 'metricFindQuery',
           value: function metricFindQuery(options) {
             var target = typeof options === "string" ? options : options.target;
@@ -152,6 +161,23 @@ System.register(['lodash'], function (_export, _context) {
             }).then(this.mapToTextValue);
           }
         }, {
+          key: 'tagValueFindQuery',
+          value: function tagValueFindQuery(options, tag) {
+            var target = typeof options === "string" ? options : options.target;
+            var tag = typeof tag === "string" ? tag : options.tag;
+            var interpolated = {
+              target: this.templateSrv.replace(target, null, 'regex'),
+              tag: this.templateSrv.replace(tag, null, 'regex')
+            };
+
+            return this.backendSrv.datasourceRequest({
+              url: this.url + '/query/tagvs',
+              data: interpolated,
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' }
+            }).then(this.mapToTextValue);
+          }
+        }, {
           key: 'fieldOptionsQuery',
           value: function fieldOptionsQuery(options) {
             var target = typeof options === "string" ? options : options.target;
@@ -170,9 +196,7 @@ System.register(['lodash'], function (_export, _context) {
           key: 'mapToTextValue',
           value: function mapToTextValue(result) {
             return _.map(result.data, function (d, i) {
-              if (d && d.text && d.value) {
-                return { text: d.text, value: d.value };
-              } else if (_.isObject(d)) {
+              if (d && d.text && d.value) {} else if (_.isObject(d)) {
                 return { text: d, value: i };
               }
               return { text: d, value: d };

@@ -118,6 +118,15 @@ var SidewinderDatasource = exports.SidewinderDatasource = function () {
       }).then(this.mapToTextValue);
     }
   }, {
+    key: 'operatorTypes',
+    value: function operatorTypes(options) {
+      return this.backendSrv.datasourceRequest({
+        url: this.url + '/query/otypes',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(this.mapToTextValue);
+    }
+  }, {
     key: 'metricFindQuery',
     value: function metricFindQuery(options) {
       var target = typeof options === "string" ? options : options.target;
@@ -148,6 +157,23 @@ var SidewinderDatasource = exports.SidewinderDatasource = function () {
       }).then(this.mapToTextValue);
     }
   }, {
+    key: 'tagValueFindQuery',
+    value: function tagValueFindQuery(options, tag) {
+      var target = typeof options === "string" ? options : options.target;
+      var tag = typeof tag === "string" ? tag : options.tag;
+      var interpolated = {
+        target: this.templateSrv.replace(target, null, 'regex'),
+        tag: this.templateSrv.replace(tag, null, 'regex')
+      };
+
+      return this.backendSrv.datasourceRequest({
+        url: this.url + '/query/tagvs',
+        data: interpolated,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(this.mapToTextValue);
+    }
+  }, {
     key: 'fieldOptionsQuery',
     value: function fieldOptionsQuery(options) {
       var target = typeof options === "string" ? options : options.target;
@@ -166,9 +192,7 @@ var SidewinderDatasource = exports.SidewinderDatasource = function () {
     key: 'mapToTextValue',
     value: function mapToTextValue(result) {
       return _lodash2.default.map(result.data, function (d, i) {
-        if (d && d.text && d.value) {
-          return { text: d.text, value: d.value };
-        } else if (_lodash2.default.isObject(d)) {
+        if (d && d.text && d.value) {} else if (_lodash2.default.isObject(d)) {
           return { text: d, value: i };
         }
         return { text: d, value: d };
