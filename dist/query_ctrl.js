@@ -106,9 +106,22 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             return res;
           }
         }, {
+          key: 'getTagValueOptions',
+          value: function getTagValueOptions(tagKey) {
+            var res = this.datasource.tagValueFindQuery(this.target, tagKey);
+            return res;
+          }
+        }, {
           key: 'getConditionOptions',
           value: function getConditionOptions() {
             return this.datasource.conditionTypes(this.target);
+          }
+        }, {
+          key: 'getOperatorOptions',
+          value: function getOperatorOptions() {
+            console.log("ctrl operator options");
+
+            return this.datasource.operatorTypes(this.target);
           }
         }, {
           key: 'getFieldOptions',
@@ -116,7 +129,6 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             if (!this.target.field) {
               this.target.field = '';
             }
-
             return this.datasource.fieldOptionsQuery(this.target);
           }
         }, {
@@ -140,7 +152,7 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             if (this.target.filters.length > 0) {
               this.target.filters.push({ 'type': 'condition', 'value': 'AND' });
             }
-            this.target.filters.push({});
+            this.target.filters.push({ 'operator': '=', 'key': 'Tag Key', 'value': 'Tag Value' });
             this.panelCtrl.refresh();
           }
         }, {

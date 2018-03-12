@@ -96,6 +96,14 @@ export class SidewinderDatasource {
         headers: { 'Content-Type': 'application/json' }
       }).then(this.mapToTextValue);
   }
+  
+  operatorTypes(options) {
+    return this.backendSrv.datasourceRequest({
+        url: this.url + '/query/otypes',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(this.mapToTextValue);
+  }
 
   metricFindQuery(options) {
     var target = typeof options === "string" ? options : options.target;
@@ -124,6 +132,22 @@ export class SidewinderDatasource {
       headers: { 'Content-Type': 'application/json' }
     }).then(this.mapToTextValue);
   }
+  
+  tagValueFindQuery(options, tag) {
+    var target = typeof options === "string" ? options : options.target;
+    var tag = typeof tag === "string" ? tag : options.tag;
+    var interpolated = {
+      target: this.templateSrv.replace(target, null, 'regex'),
+      tag: this.templateSrv.replace(tag, null, 'regex')
+    };
+
+    return this.backendSrv.datasourceRequest({
+      url: this.url + '/query/tagvs',
+      data: interpolated,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(this.mapToTextValue);
+  }
 
   fieldOptionsQuery(options) {
     var target = typeof options === "string" ? options : options.target;
@@ -142,7 +166,6 @@ export class SidewinderDatasource {
   mapToTextValue(result) {
     return _.map(result.data, (d, i) => {
       if (d && d.text && d.value) {
-        return { text: d.text, value: d.value };
       } else if (_.isObject(d)) {
         return { text: d, value: i};
       }

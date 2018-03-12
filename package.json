@@ -1,7 +1,7 @@
 {
   "name": "sidewinder-grafana",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "url": "https://github.com/srotya/sidewinder-grafana/issues"
   },
   "engines": {
-    "node": "6.10.0"
+    "node": "^6.10.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
