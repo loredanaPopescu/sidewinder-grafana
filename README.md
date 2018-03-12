@@ -41,6 +41,8 @@ Here's how an example data source should look like:
 #### Create a Query Visually
 Sidewinder support visual query building using an editor. There is support for auto-complete for all non-numeric fields (Measurement, Value Field, Tags). Please refer to [Sidewinder data model](http://sidewinder.srotya.com/docs/#/designs/?id=storage-engines) to understand the significance of different concepts.
 
+```Note: As of plugin version 0.2.0, Tag Key Value support is added to the Grafana plugin. Sidewinder version 0.0.38+ is needed for Key Value support```
+
 Here's how an example Visual Query should look like:
 ![Data Source Edit](https://github.com/srotya/sidewinder-grafana/raw/master/docs/ds-edit.png)
 
