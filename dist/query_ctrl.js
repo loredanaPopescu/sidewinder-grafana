@@ -152,7 +152,7 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             if (this.target.filters.length > 0) {
               this.target.filters.push({ 'type': 'condition', 'value': 'AND' });
             }
-            this.target.filters.push({});
+            this.target.filters.push({ 'operator': '=', 'key': 'Tag Key', 'value': 'Tag Value' });
             this.panelCtrl.refresh();
           }
         }, {
