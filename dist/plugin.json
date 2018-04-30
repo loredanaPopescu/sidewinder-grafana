@@ -26,8 +26,8 @@
       {"name": "Apache 2.0 License", "url": "https://github.com/srotya/sidewinder-grafana/tree/master/LICENSE"}
     ],
     "keywords": [ "sidewinder", "tsdb" ],
-    "version": "0.0.1",
-    "updated": "2017-07-10"
+    "version": "0.2.0",
+    "updated": "2018-03-11"
   },
 
   "dependencies": {
